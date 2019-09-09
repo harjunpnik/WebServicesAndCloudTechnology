@@ -1,0 +1,10 @@
+post http://localhost:3004/api/events
+Content-Type: application/json
+
+{
+"type": "Practice",
+"date": "2019-09-15",
+"totalCost": 20,
+"address": "Kuvitteellinentie 2",
+"info": "Kick-off to the season"
+}
