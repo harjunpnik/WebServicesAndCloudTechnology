@@ -23,8 +23,8 @@ eventRouter.get('/:id', (req,res,next) =>{
   .catch(error => {
     console.log(error)
     res.status(400).send({ error: 'malformatted id' })
-  });
-});
+  })
+})
 
 //  POST
 eventRouter.post('/', (request, response) => {
@@ -34,6 +34,26 @@ eventRouter.post('/', (request, response) => {
       .save()
       .then(result => {
         response.status(201).json(result)
+    })
+})
+
+//  UPDATE EVENT
+eventRouter.put('/:id', (req, res, next) => {
+  const event = {
+    type: req.body.type,
+    date: req.body.date,
+    totalCost: req.body.totalCost,
+    address: req.body.address,
+    info: req.body.info
+  }
+
+  Event.findByIdAndUpdate(req.params.id, event, { new: true })
+    .then(updateEvent => {
+      res.json(updateEvent.toJSON())
+    })
+    .catch(error =>{
+      console.log(error)
+      res.status(400).send({ error: 'malformatted id' })
     })
 })
 

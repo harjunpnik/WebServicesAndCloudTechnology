@@ -23,8 +23,8 @@ playerRouter.get('/:id', (req,res,next) =>{
   .catch(error => {
     console.log(error)
     res.status(400).send({ error: 'malformatted id' })
-  });
-});
+  })
+})
 
 
 //  POST
@@ -35,6 +35,27 @@ playerRouter.post('/', (req, res) => {
       .save()
       .then(result => {
         res.status(201).json(result)
+    })
+})
+
+//  UPDATE PLAYER
+playerRouter.put('/:id', (req, res, next) => {
+  const player = {
+    firstName: req.body.firstName,
+    lastName:  req.body.lastName,
+    email: req.body.email,
+    phone:  req.body.phone,
+    playerNr:  req.body.playerNr,
+    position:  req.body.position
+  }
+
+  Player.findByIdAndUpdate(req.params.id, player, { new: true })
+    .then(updatePlayer => {
+      res.json(updatePlayer.toJSON())
+    })
+    .catch(error =>{
+      console.log(error)
+      res.status(400).send({ error: 'malformatted id' })
     })
 })
 
