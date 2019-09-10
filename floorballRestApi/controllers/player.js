@@ -18,7 +18,7 @@ playerRouter.get('/:id', (req, res, next) =>{
       if (documents) {
         res.json(documents.toJSON())
       } else {
-        res.status(404).end() 
+        res.status(404).send({ error: 'Not Found' }) 
       }
     })
     .catch(error => next(error))

@@ -18,7 +18,7 @@ eventRouter.get('/:id', (req, res, next) =>{
       if (documents) {
         res.json(documents.toJSON())
       } else {
-        res.status(404).end() 
+        res.status(404).send({ error: 'Not Found' }) 
       }
     })
     .catch(error => next(error))
@@ -41,6 +41,7 @@ eventRouter.post('/', (req, res, next) => {
     return res.status(400).send({ error: 'Address is missing' })
   }
   body.totalCost = body.totalCost!= undefined ? body.totalCost : 0
+  body.info = body.info != undefined ? body.info : ""
 
   const event = new Event(body)
 
@@ -74,7 +75,7 @@ eventRouter.put('/:id', (req, res, next) => {
     date: body.date,
     totalCost: body.totalCost!= undefined ? body.totalCost : 0,
     address: body.address,
-    info: body.info
+    info: body.info != undefined ? body.info : "",
   }
 
   Event.findByIdAndUpdate(req.params.id, event, { new: true })
