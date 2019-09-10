@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
-mongoose.set('useFindAndModify', false)
+mongoose.set('useFindAndModify', false) //DeprecationWarning
 
+//  Schema for Players
 const playerSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
