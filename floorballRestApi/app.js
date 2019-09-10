@@ -18,4 +18,5 @@ app.use(bodyParser.json())
 app.use('/api/players', playerRouter)
 app.use('/api/events', eventRouter)
 
+
 module.exports = app 
