@@ -1,0 +1,11 @@
+put http://localhost:3004/api/players/5d77785fec467321acaef26e
+Content-Type: application/json
+
+{
+"firstName": "",
+"lastName": "Ruotsalainen",
+"email": "andredr@email.fi",
+"phone": "234-987651",
+"playerNr": 22,
+"position": "Goalkeeper"
+}

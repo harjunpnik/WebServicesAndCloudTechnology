@@ -24,10 +24,7 @@ app.use((req,res,next) => {
     next(error)
 })
 
-app.use((error, req, res, next) => {
-    res.status(error.status).json({
-        error: error.message
-    })
-})
+const errorHandler = require('./controllers/error')
+app.use(errorHandler)
 
 module.exports = app 
