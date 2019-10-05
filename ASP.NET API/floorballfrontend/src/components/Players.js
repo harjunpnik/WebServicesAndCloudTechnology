@@ -13,6 +13,8 @@ const Players = () => {
     const newPhone = useField('text')
     const newPlayerNr = useField('text')
     const newPosition = useField('text')
+    
+
 
     //Fetches data from api when user switches to players page
     useEffect(() => {
@@ -23,6 +25,7 @@ const Players = () => {
           })
     }, [])
 
+    //  Add Player
     const addPlayer = (event) => {
         event.preventDefault()
         const playerObject = {
@@ -47,10 +50,35 @@ const Players = () => {
             newPlayerNr.reset()
             newPosition.reset()
           })
-      }
+    }
+
+    //  Delete player
+    const deletePlayer = (player) => {
+        if(window.confirm('Remove player ' + player.firstName + ' ' + player.lastName+ ' ?')){
+            playerService
+              .deletePlayer(player.id)
+              .then( () => {
+                setPlayers(players.filter(p =>
+                  p.id !== player.id
+                ))
+              })
+              .catch(error => {
+                console.log(error)
+              })
+          
+        }
+    
+    }
+
 
     //maps players to table
-    const playerRows = () => players.map (p => <Player key={p.id} player={p}/>)
+    const playerRows = () => players.map(p => 
+        <Player 
+        key={p.id} 
+        player={p} 
+        remove={() => deletePlayer(p)} 
+        />
+    )
 
     return(
         <div>
@@ -82,6 +110,7 @@ const Players = () => {
                 newPhone={newPhone.fields} 
                 newPlayerNr={newPlayerNr.fields}
                 newPosition={newPosition.fields}
+
                 />
             </div>
                     
