@@ -10,20 +10,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System.Web.Http;
-using System.Web.Http.Cors;
 
-namespace FloorballRegistrationsApi
+namespace FloorBallNetApi
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            var config = new HttpConfiguration();
-            var cors = new EnableCorsAttribute("https://floorballnetapi.azurewebsites.net/", "*", "*");
-            config.EnableCors(cors);
-            //app.UseWebApi(config);
         }
 
         public IConfiguration Configuration { get; }
@@ -41,6 +35,12 @@ namespace FloorballRegistrationsApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(options => {
+                options.AllowAnyOrigin();
+                options.AllowAnyMethod();
+                options.AllowAnyHeader();
+            });
 
             app.UseHttpsRedirection();
 
