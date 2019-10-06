@@ -13,7 +13,7 @@ const Costs = () => {
           })
     }, [])
 
-        //maps players to table
+        //maps costs to table
         const costRows = () => costs.map(c => 
             <Cost 
             key={c.id} 

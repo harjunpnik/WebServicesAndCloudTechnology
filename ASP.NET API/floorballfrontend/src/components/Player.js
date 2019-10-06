@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import './styles/table.css'
-//import {useField } from '../hooks/index'
 import playerService from '../services/player'
-//import { tsConstructorType } from '@babel/types'
+
 
 const Player = ({player, remove}) => {
     const [visible, setVisible] = useState(false)

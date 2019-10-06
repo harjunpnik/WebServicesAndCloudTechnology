@@ -36,8 +36,8 @@ const Event = ({event, remove}) => {
             address: editAddress,
             info: editInfo
         }
-        console.log(id)
-        console.log(eventObject)
+        //console.log(id)
+        //console.log(eventObject)
     
         EventService
           .update(id, eventObject)

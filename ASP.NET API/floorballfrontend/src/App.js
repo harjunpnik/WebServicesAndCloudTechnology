@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import Players from './components/Players'
 import Events from './components/Events'
